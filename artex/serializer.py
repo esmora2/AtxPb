@@ -24,5 +24,5 @@ class CexPlanSerializer(serializers.ModelSerializer):
 
 class CexStandSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CexPlan
+        model = CexStand
         fields = '__all__'

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializer import UserSerializer, ProfileSerializer, CexQuotesSerializer, CexPlanSerializer, CexStandSerializer
-from .models import User, Profile, CexQuotes, CexPlan
+from .models import User, Profile, CexQuotes, CexPlan, CexStand
 
 
 # Create your views here.
@@ -22,5 +22,5 @@ class CexPlanView(viewsets.ModelViewSet):
     queryset = CexPlan.objects.all()
 
 class CexStandView(viewsets.ModelViewSet):
-    serializer_class = CexPlanSerializer
-    queryset = CexPlan.objects.all()
+    serializer_class = CexStandSerializer
+    queryset = CexStand.objects.all()

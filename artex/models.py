@@ -969,6 +969,8 @@ class CexShoppingProduct(models.Model):
         db_table = 'cex_shopping_product'
 
 
+from django.db import models
+
 class CexStand(models.Model):
     user_id = models.IntegerField(blank=True, null=True)
     stand_type_id = models.IntegerField()
@@ -980,79 +982,84 @@ class CexStand(models.Model):
     hits = models.IntegerField(blank=True, null=True)
     slug = models.CharField(unique=True, max_length=255)
     tour_virtual_code = models.TextField(blank=True, null=True)
-    tour_virtual_active = models.TextField()  # This field type is a guess.
-    isdeleted = models.TextField(db_column='isDeleted', db_comment='Útil para borrado lógico')  # Field name made lowercase. This field type is a guess.
-    isactive = models.TextField(db_column='isActive', db_comment='Útil para uso de activo/inactivo\n')  # Field name made lowercase. This field type is a guess.
+    tour_virtual_active = models.BooleanField()  # Cambiado a BooleanField.
+    isdeleted = models.BooleanField(db_column='isDeleted', db_comment='Útil para borrado lógico')  # Cambiado a BooleanField.
+    isactive = models.BooleanField(db_column='isActive', db_comment='Útil para uso de activo/inactivo\n')  # Cambiado a BooleanField.
     credits_total = models.FloatField(db_comment='Valor de créditos dados por el plan')
     credits_extra = models.FloatField(db_comment='Valor de créditos adquiridos')
-    issleep = models.TextField(db_column='isSleep', db_comment='Verificador de Estado Dormido')  # Field name made lowercase. This field type is a guess.
-    pro_switch = models.TextField()  # This field type is a guess.
+    issleep = models.BooleanField(db_column='isSleep', db_comment='Verificador de Estado Dormido')  # Cambiado a BooleanField.
+    pro_switch = models.BooleanField()  # Cambiado a BooleanField.
     pro_slide_image = models.CharField(max_length=255)
     pro_body = models.TextField(blank=True, null=True)
     pro_products = models.TextField()
     pro_services = models.TextField()
     pro_faq = models.TextField()
-    pro_products_switch = models.TextField()  # This field type is a guess.
-    pro_services_switch = models.TextField()  # This field type is a guess.
-    pro_hv_switch = models.TextField(db_comment='switch horizontal,vertical')  # This field type is a guess.
+    pro_products_switch = models.BooleanField()  # Cambiado a BooleanField.
+    pro_services_switch = models.BooleanField()  # Cambiado a BooleanField.
+    pro_hv_switch = models.BooleanField(db_comment='switch horizontal, vertical')  # Cambiado a BooleanField.
     video_code = models.TextField(blank=True, null=True, db_comment='Video del Stand')
-    email_manager = models.TextField(blank=True, null=True)
-    email_quotes = models.TextField()  # This field type is a guess.
-    do_related = models.TextField()  # This field type is a guess.
-    can_sell = models.IntegerField()
-    switch_store = models.IntegerField()
-    store_code = models.TextField(blank=True, null=True)
+    email_manager = models.EmailField(blank=True, null=True)  # Cambiado a EmailField.
+    email_quotes = models.EmailField()  # Cambiado a EmailField.
+    do_related = models.BooleanField()  # Cambiado a BooleanField.
+    can_sell = models.BooleanField()  # Cambiado a BooleanField.
+    switch_store = models.BooleanField()  # Cambiado a BooleanField.
+    store_code = models.CharField(max_length=255, blank=True, null=True)
     professional_type_id = models.IntegerField(blank=True, null=True)
     builder_type_id = models.IntegerField(blank=True, null=True)
     renewal_date = models.DateField(blank=True, null=True)
-    state_1 = models.TextField()  # This field type is a guess.
-    state_2 = models.TextField()  # This field type is a guess.
-    state_3 = models.TextField()  # This field type is a guess.
-    state_4 = models.TextField()  # This field type is a guess.
-    state_5 = models.TextField()  # This field type is a guess.
-    state_6 = models.TextField()  # This field type is a guess.
-    state_7 = models.TextField()  # This field type is a guess.
-    state_8 = models.TextField()  # This field type is a guess.
-    state_9 = models.TextField()  # This field type is a guess.
-    state_10 = models.TextField()  # This field type is a guess.
+    
+    # Cambiado a BooleanField.
+    state_1 = models.BooleanField(default=False)
+    state_2 = models.BooleanField(default=False)
+    state_3 = models.BooleanField(default=False)
+    state_4 = models.BooleanField(default=False)
+    state_5 = models.BooleanField(default=False)
+    state_6 = models.BooleanField(default=False)
+    state_7 = models.BooleanField(default=False)
+    state_8 = models.BooleanField(default=False)
+    state_9 = models.BooleanField(default=False)
+    state_10 = models.BooleanField(default=False)
+
     date_activate_shopping = models.DateTimeField(blank=True, null=True)
     delivery_cost = models.FloatField()
     url = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)  # Cambiado a EmailField.
     phone = models.CharField(max_length=30)
     industry_id = models.IntegerField(blank=True, null=True)
     adsense_code = models.TextField(blank=True, null=True)
-    adsense_enabled = models.IntegerField()
+    adsense_enabled = models.BooleanField()  # Cambiado a BooleanField.
     cex_whatsapp_phone = models.CharField(max_length=30, blank=True, null=True)
     cex_whatsapp_start_date = models.DateField(blank=True, null=True)
     cex_whatsapp_end_date = models.DateField(blank=True, null=True)
-    cex_whatsapp_enabled = models.IntegerField()
-    show_map = models.IntegerField(blank=True, null=True)
-    manual_end_date_whatsapp = models.IntegerField(blank=True, null=True)
-    show_product_price = models.IntegerField(blank=True, null=True)
+    cex_whatsapp_enabled = models.BooleanField()  # Cambiado a BooleanField.
+    show_map = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    manual_end_date_whatsapp = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    show_product_price = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
     percent_price_contruex = models.FloatField()
     percent_price_public_sale = models.FloatField()
-    enable_quotes_crm = models.IntegerField(blank=True, null=True)
+    enable_quotes_crm = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
     cex_manage_crm_start_date = models.DateField(blank=True, null=True)
     cex_manage_crm_end_date = models.DateField(blank=True, null=True)
-    manage_crm = models.IntegerField(blank=True, null=True)
-    manage_client_quotes_crm = models.IntegerField(blank=True, null=True)
+    manage_crm = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    manage_client_quotes_crm = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
     cex_manage_client_quotes_crm_start_date = models.DateField(blank=True, null=True)
     cex_manage_client_quotes_crm_end_date = models.DateField(blank=True, null=True)
-    dealers = models.TextField(db_collation='utf8mb3_unicode_ci', blank=True, null=True, db_comment='(DC2Type:json_array)')
-    enable_client_quotes_form = models.IntegerField(blank=True, null=True)
-    enable_client_advisory_distributors_form = models.IntegerField(blank=True, null=True)
-    other_trans_emails = models.TextField(db_collation='utf8mb3_unicode_ci', blank=True, null=True, db_comment='(DC2Type:json_array)')
-    other_users = models.TextField(db_collation='utf8mb3_unicode_ci', blank=True, null=True, db_comment='(DC2Type:json_array)')
-    enable_quote_direct = models.IntegerField(blank=True, null=True)
-    enable_super_stand = models.IntegerField(blank=True, null=True)
+    dealers = models.JSONField(blank=True, null=True, db_comment='(DC2Type:json_array)')
+    enable_client_quotes_form = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    enable_client_advisory_distributors_form = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    other_trans_emails = models.JSONField(blank=True, null=True, db_comment='(DC2Type:json_array)')
+    other_users = models.JSONField(blank=True, null=True, db_comment='(DC2Type:json_array)')
+    enable_quote_direct = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
+    enable_super_stand = models.BooleanField(blank=True, null=True)  # Cambiado a BooleanField.
     date_activate_super_stand = models.DateTimeField(blank=True, null=True)
     super_stand_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'cex_stand'
+
+
 
 
 class CexStandExpenses(models.Model):
