@@ -665,13 +665,13 @@ class CexPaypalSubscription(models.Model):
 class CexPlan(models.Model):
     name = models.CharField(max_length=150, db_comment='Nombre del Plan')
     description = models.CharField(max_length=250, db_comment='Descripción del Plan')
-    description_pro = models.CharField(max_length=250, blank=True, null=True, db_comment='Descripción del Plan profecional')
+    description_pro = models.CharField(max_length=250, blank=True, null=True, db_comment='Descripción del Plan profesional')
     payment_description = models.CharField(max_length=255, blank=True, null=True)
     payment_description_pro = models.CharField(max_length=255, blank=True, null=True)
     features = models.TextField(blank=True, null=True)
     features_pro = models.TextField(blank=True, null=True)
     slug = models.CharField(max_length=45, blank=True, null=True, db_comment='Slug del Plan')
-    active = models.TextField(db_comment='Activo/Inactivo')  # This field type is a guess.
+    active = models.BooleanField(db_comment='Activo/Inactivo')  # Cambiado a BooleanField
     plan_type = models.CharField(max_length=45, db_comment='Tipo del Plan')
     valid_for_days = models.IntegerField(db_comment='Validez del plan en días')
     monthly_cost = models.FloatField(db_comment='Costo del plan en valor mensual')
@@ -680,63 +680,64 @@ class CexPlan(models.Model):
     annual_discount_pro = models.FloatField(blank=True, null=True, db_comment='Descuento en el plan, en caso de pago anualizado - profesional')
     catalogs = models.IntegerField(db_comment='Número de catálogos para el plan')
     catalogs_pro = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos para el plan profesional')
-    branding_index = models.TextField(db_comment='Permite modificar landing page exhibidor')  # This field type is a guess.
-    branding_index_pro = models.TextField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - profesional')  # This field type is a guess.
-    video_stand = models.TextField(db_comment='Se permite colocar videos en el exhibidor')  # This field type is a guess.
-    video_stand_pro = models.TextField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - profesional')  # This field type is a guess.
-    slider_pro_stand = models.TextField(db_comment='Permite la incluir de sliders pro')  # This field type is a guess.
-    slider_pro_stand_pro = models.TextField(blank=True, null=True, db_comment='Permite la incluir de sliders pro - profesional')  # This field type is a guess.
-    tour_virtual_stand = models.TextField(db_comment='Permite incluir Tour virtual')  # This field type is a guess.
-    tour_virtual_stand_pro = models.TextField(blank=True, null=True, db_comment='Permite incluir Tour virtual - profesional')  # This field type is a guess.
-    featured_product_index = models.IntegerField(db_comment='Número de productos destacados en pagina principal')
-    featured_product_index_pro = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en pagina principal - profesional')
+    branding_index = models.BooleanField(db_comment='Permite modificar landing page exhibidor')  # Cambiado a BooleanField
+    branding_index_pro = models.BooleanField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - profesional')  # Cambiado a BooleanField
+    video_stand = models.BooleanField(db_comment='Se permite colocar videos en el exhibidor')  # Cambiado a BooleanField
+    video_stand_pro = models.BooleanField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - profesional')  # Cambiado a BooleanField
+    slider_pro_stand = models.BooleanField(db_comment='Permite la inclusión de sliders pro')  # Cambiado a BooleanField
+    slider_pro_stand_pro = models.BooleanField(blank=True, null=True, db_comment='Permite la inclusión de sliders pro - profesional')  # Cambiado a BooleanField
+    tour_virtual_stand = models.BooleanField(db_comment='Permite incluir Tour virtual')  # Cambiado a BooleanField
+    tour_virtual_stand_pro = models.BooleanField(blank=True, null=True, db_comment='Permite incluir Tour virtual - profesional')  # Cambiado a BooleanField
+    featured_product_index = models.IntegerField(db_comment='Número de productos destacados en página principal')
+    featured_product_index_pro = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en página principal - profesional')
     featured_product_category = models.IntegerField(db_comment='Número de productos destacados en categorías')
     featured_product_category_pro = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en categorías - profesional')
     featured_catalog_index = models.IntegerField(db_comment='Número de catálogos')
     featured_catalog_index_pro = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos - profesional')
-    featured_catalog_category = models.IntegerField(db_comment='Numero de catálogos promocionados en categoría')
-    featured_catalog_category_pro = models.IntegerField(blank=True, null=True, db_comment='Numero de catálogos promocionados en categoría - profesional')
+    featured_catalog_category = models.IntegerField(db_comment='Número de catálogos promocionados en categoría')
+    featured_catalog_category_pro = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos promocionados en categoría - profesional')
     banner_index = models.IntegerField(db_comment='Número de imágenes por banner')
     banner_index_pro = models.IntegerField(blank=True, null=True, db_comment='Número de imágenes por banner - profesional')
     credits = models.IntegerField(db_comment='Créditos para el plan')
     credits_pro = models.IntegerField(blank=True, null=True, db_comment='Créditos para el plan profesional')
-    tour_virtual_stand_arq = models.TextField(db_comment='Permite incluir Tour virtual Arquitectura')  # This field type is a guess.
-    tour_virtual_stand_fer = models.TextField(db_comment='Permite incluir Tour virtual Ferreteria')  # This field type is a guess.
-    slider_pro_stand_arq = models.IntegerField(blank=True, null=True, db_comment='Permite la incluir de sliders pro arquitectura')
-    slider_pro_stand_fer = models.IntegerField(blank=True, null=True, db_comment='Permite la incluir de sliders pro ferreteria')
+    tour_virtual_stand_arq = models.BooleanField(db_comment='Permite incluir Tour virtual Arquitectura')  # Cambiado a BooleanField
+    tour_virtual_stand_fer = models.BooleanField(db_comment='Permite incluir Tour virtual Ferretería')  # Cambiado a BooleanField
+    slider_pro_stand_arq = models.IntegerField(blank=True, null=True, db_comment='Permite la inclusión de sliders pro arquitectura')
+    slider_pro_stand_fer = models.IntegerField(blank=True, null=True, db_comment='Permite la inclusión de sliders pro ferretería')
     description_arq = models.CharField(max_length=250, blank=True, null=True, db_comment='Descripción del Plan Arquitectura')
-    description_fer = models.CharField(max_length=250, blank=True, null=True, db_comment='Descripción del Plan Ferreteria')
+    description_fer = models.CharField(max_length=250, blank=True, null=True, db_comment='Descripción del Plan Ferretería')
     monthly_cost_arq = models.FloatField(blank=True, null=True, db_comment='Costo del plan en valor mensual - Arquitectura')
-    monthly_cost_fer = models.FloatField(blank=True, null=True, db_comment='Costo del plan en valor mensual - Ferreteria')
+    monthly_cost_fer = models.FloatField(blank=True, null=True, db_comment='Costo del plan en valor mensual - Ferretería')
     payment_description_arq = models.CharField(max_length=255, blank=True, null=True)
     payment_description_fer = models.CharField(max_length=255, blank=True, null=True)
     features_arq = models.TextField(blank=True, null=True)
     features_fer = models.TextField(blank=True, null=True)
     annual_discount_arq = models.FloatField(blank=True, null=True, db_comment='Descuento en el plan, en caso de pago anualizado - Arquitectura')
-    annual_discount_fer = models.FloatField(blank=True, null=True, db_comment='Descuento en el plan, en caso de pago anualizado - Ferreteria')
+    annual_discount_fer = models.FloatField(blank=True, null=True, db_comment='Descuento en el plan, en caso de pago anualizado - Ferretería')
     catalogs_arq = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos para el plan Arquitectura')
-    catalogs_fer = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos para el plan Ferreteria')
-    branding_index_arq = models.TextField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - Arquitectura')  # This field type is a guess.
-    branding_index_fer = models.TextField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - Ferreteria')  # This field type is a guess.
-    video_stand_arq = models.TextField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - Arquitectura')  # This field type is a guess.
-    video_stand_fer = models.TextField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - Ferreteria')  # This field type is a guess.
-    featured_product_index_arq = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en pagina principal - Arquitectura')
-    featured_product_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en pagina principal - Ferreteria')
+    catalogs_fer = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos para el plan Ferretería')
+    branding_index_arq = models.BooleanField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - Arquitectura')  # Cambiado a BooleanField
+    branding_index_fer = models.BooleanField(blank=True, null=True, db_comment='Permite modificar landing page exhibidor - Ferretería')  # Cambiado a BooleanField
+    video_stand_arq = models.BooleanField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - Arquitectura')  # Cambiado a BooleanField
+    video_stand_fer = models.BooleanField(blank=True, null=True, db_comment='Se permite colocar videos en el exhibidor - Ferretería')  # Cambiado a BooleanField
+    featured_product_index_arq = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en página principal - Arquitectura')
+    featured_product_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en página principal - Ferretería')
     featured_product_category_arq = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en categorías - Arquitectura')
-    featured_product_category_fer = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en categorías - Ferreteria')
+    featured_product_category_fer = models.IntegerField(blank=True, null=True, db_comment='Número de productos destacados en categorías - Ferretería')
     featured_catalog_index_arq = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos - Arquitectura')
-    featured_catalog_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos - Ferreteria')
-    featured_catalog_category_arq = models.IntegerField(blank=True, null=True, db_comment='Numero de catálogos promocionados en categoría - Arquitectura')
-    featured_catalog_category_fer = models.IntegerField(blank=True, null=True, db_comment='Numero de catálogos promocionados en categoría - Ferreteria')
+    featured_catalog_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos - Ferretería')
+    featured_catalog_category_arq = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos promocionados en categoría - Arquitectura')
+    featured_catalog_category_fer = models.IntegerField(blank=True, null=True, db_comment='Número de catálogos promocionados en categoría - Ferretería')
     banner_index_arq = models.IntegerField(blank=True, null=True, db_comment='Número de imágenes por banner - Arquitectura')
-    banner_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de imágenes por banner - Ferreteria')
+    banner_index_fer = models.IntegerField(blank=True, null=True, db_comment='Número de imágenes por banner - Ferretería')
     credits_arq = models.IntegerField(blank=True, null=True, db_comment='Créditos para el plan Arquitectura')
-    credits_fer = models.IntegerField(blank=True, null=True, db_comment='Créditos para el plan Ferreteria')
+    credits_fer = models.IntegerField(blank=True, null=True, db_comment='Créditos para el plan Ferretería')
     promotion = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'cex_plan'
+
 
 
 class CexPreforma(models.Model):
@@ -1271,7 +1272,7 @@ class User(models.Model):
     flags = models.IntegerField(blank=True, null=True)
     last_login_at = models.IntegerField(blank=True, null=True)
     stand_id = models.IntegerField(blank=True, null=True)
-    terms_and_conditions = models.TextField(db_comment='terminos y condiciones aceptados o no aceptados')  # This field type is a guess.
+    terms_and_conditions = models.BooleanField(db_comment='Términos y condiciones aceptados o no aceptados')
     stand_assign = models.IntegerField(blank=True, null=True)
 
     class Meta:
