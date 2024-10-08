@@ -22,5 +22,6 @@ urlpatterns = [
     path('users/', include('artex.urls')),
     path('profiles/', include('artex.urls')),
     path('cexquotes/', include('artex.urls')),
-    path('cexplan/', include('artex.urls'))
+    path('cexplan/', include('artex.urls')),
+    path('cexstand/', include('artex.urls'))
 ]

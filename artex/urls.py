@@ -8,6 +8,7 @@ router.register(r'users', views.UserView, 'users')
 router.register(r'profiles', views.ProfileView, 'profiles')
 router.register(r'cexquotes', views.CexQuotesView, 'cexquotes')
 router.register(r'cexplan', views.CexPlanView, 'cexplan')
+router.register(r'cexstand', views.CexStandView, 'cexstand')
 
 
 urlpatterns = [
