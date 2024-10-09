@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Profile, CexQuotes, CexPlan, CexStand
+from .models import User, Profile, CexQuotes, CexPlan, CexStand,CexStandTypes, CexCategory
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,4 +25,9 @@ class CexPlanSerializer(serializers.ModelSerializer):
 class CexStandSerializer(serializers.ModelSerializer):
     class Meta:
         model = CexStand
+        fields = '__all__'
+
+class CexCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CexCategory
         fields = '__all__'
